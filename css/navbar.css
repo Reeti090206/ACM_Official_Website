@@ -1,0 +1,227 @@
+/* ====================
+   NAVBAR STYLES
+   ==================== */
+
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--transition-normal);
+}
+
+.navbar.scrolled {
+  top: 10px;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-img {
+  height: 40px;
+  width: 40px;        
+  border-radius: 50%; 
+  object-fit: cover; 
+  background: white;  
+}
+
+
+
+/* Navigation Links */
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.navbar-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color var(--transition-fast);
+  letter-spacing: 0.3px;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--electric-blue);
+  transition: width var(--transition-normal);
+}
+
+.navbar-links a:hover {
+  color: var(--electric-blue);
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+/* Join Now Button with Shimmer */
+.btn-join {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--electric-blue), var(--sky-blue));
+  color: var(--deep-navy);
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+.btn-join::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.btn-join:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+}
+
+.btn-join:active {
+  transform: translateY(0);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--white);
+  border-radius: 3px;
+  transition: all var(--transition-normal);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .navbar {
+    width: 95%;
+    padding: 1rem 1.5rem;
+  }
+  
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 300px;
+    flex-direction: column;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 6rem 2rem;
+    gap: 2rem;
+    transition: right var(--transition-slow);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar-links.active {
+    right: 0;
+  }
+  
+  .navbar-links a {
+    font-size: 1.1rem;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  .btn-join {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navbar-logo {
+    font-size: 1.25rem;
+  }
+  
+  .logo-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .navbar-links {
+    width: 250px;
+    padding: 5rem 1.5rem;
+  }
+}
