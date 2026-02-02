@@ -553,5 +553,23 @@
     padding: 20px 24px;
   }
 }
-  
+  .modal-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+#eventModal {
+  display: none;
+}
 
+.modal {
+  display: none;             
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+}

@@ -188,7 +188,8 @@ class EventsSection {
 document.addEventListener('DOMContentLoaded', () => {
   const eventsSection = document.querySelector('.events-section');
   if (eventsSection) {
-    new EventsSection();
+    const events = new EventsSection();
+    events.filterEvents('past');
 
     // Reinitialize Lucide icons for dynamically added content
     if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -200,15 +201,23 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====================
 function openEventModal(title, image, description) {
   const modal = document.getElementById("eventModal");
+  const modalImage = document.getElementById("modalImage");
+
   document.getElementById("modalTitle").innerText = title;
-  document.getElementById("modalImage").src = image;
   document.getElementById("modalDescription").innerText = description;
+
+  if (image) {
+    modalImage.src = image;
+    modalImage.style.display = "block";
+  } else {
+    modalImage.style.display = "none";
+  }
+
   modal.style.display = "flex";
 }
 
 function closeEventModal() {
-  const modal = document.getElementById("eventModal");
-  modal.style.display = "none";
+  document.getElementById("eventModal").style.display = "none";
 }
 
 // Close modal on outside click
@@ -221,3 +230,5 @@ window.addEventListener("click", (e) => {
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeEventModal();
 });
+
+
